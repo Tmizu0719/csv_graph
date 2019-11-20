@@ -3,6 +3,7 @@ November 14th 2019
             Authoer T.Mizumoto
 """
 # python 3
+# ver.X5.03
 # csvGraph.py  -  Create a graph from csv file.
 # EXAMPLE: python csvGraph.py DATA.csv time
 # EXAMPLE: python csvGraph.py -l DATA.csv time
@@ -70,12 +71,10 @@ def trans():
     option_trans = "On"
     return option_trans
 
-if args.log and args.range:
+
+if args.log:
     log_axis = log_scale()
-    option_range, x_min, x_max, y_min, y_max = axis_range()
-elif args.log:
-    log_axis = log_scale()
-elif args.range:
+if args.range:
     option_range, x_min, x_max, y_min, y_max = axis_range()
 
 
