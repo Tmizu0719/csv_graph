@@ -3,7 +3,7 @@ November 14th 2019
             Authoer T.Mizumoto
 """
 # python 3
-# ver.X5.03
+# ver.X5.04
 # csvGraph.py  -  Create a graph from csv file.
 # EXAMPLE: python csvGraph.py DATA.csv time
 # EXAMPLE: python csvGraph.py -l DATA.csv time
@@ -66,9 +66,9 @@ def axis_range():
     return option_range, x_min, x_max, y_min, y_max
 
 # option: transparency graph
-option_trans = "Off"
+option_trans = False
 def trans():
-    option_trans = "On"
+    option_trans = True
     return option_trans
 
 
@@ -76,6 +76,8 @@ if args.log:
     log_axis = log_scale()
 if args.range:
     option_range, x_min, x_max, y_min, y_max = axis_range()
+if args.transparent:
+    option_trans = trans()
 
 
 # enter the X and Y axis name
@@ -167,4 +169,6 @@ else:
 
 plt.legend()
 plt.grid(which = "both")
-plt.savefig(name.graph + ".png")
+
+# option: transparency graph
+plt.savefig(name.graph + ".png", transparent = option_trans)
