@@ -3,7 +3,7 @@ November 14th 2019
             Author T.Mizumoto
 """
 # python 3
-# ver.X5.04
+# ver.X5.05
 # csvGraph.py  -  Create a graph from csv file.
 # EXAMPLE: python csvGraph.py DATA.csv time
 # EXAMPLE: python csvGraph.py -l DATA.csv time
@@ -80,18 +80,6 @@ if args.transparent:
     option_trans = trans()
 
 
-# enter the X and Y axis name
-name = Name()
-print("Enter the X axis name: ")
-name.x_axis = input()
-print("Enter the Y axis name: ")
-name.y_axis = input()
-
-# enter the graph name
-print("Enter the graph name: ")
-name.graph = input()
-
-
 # read the file
 file_open = open(file_name)
 file_reader = csv.reader(file_open)
@@ -117,6 +105,25 @@ for row in file_reader:
 for i in list_num_ori:
     exec("if change_ax_name == data{}.name:\
         change_ax_num = i".format(i))
+    exec('raise Exception("ERROR: the change axis is not found.")')
+
+# print data name
+for i in list_num_ori:
+    if i == 2:
+        exec("print('[{}]' + data{}.rename())".format(i+1, i))
+    else:
+        exec("print('[{}]' + data{}.rename() + ', ', end = '')".format(i+1, i))
+
+# enter the X and Y axis name'
+name = Name()
+print("Enter the X axis name: ")
+name.x_axis = input()
+print("Enter the Y axis name: ")
+name.y_axis = input()
+
+# enter the graph name
+print("Enter the graph name: ")
+name.graph = input()
 
 
 # draw a graph sans-serif
