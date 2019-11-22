@@ -35,7 +35,7 @@ class Data:
 # the read to file name
 p = argparse.ArgumentParser()
 p.add_argument("csv_name", type = str, help = ".csv file name")
-p.add_argument("change", type = str, help = "name of axis to change")
+p.add_argument("change", type = str, help = "Change the scale of the horizontal axis (X) in this graph")
 # option
 p.add_argument("-l", "--log", action = "store_true", help = "logarithmic scale")
 p.add_argument("-r", "--range", action = "store_true", help = "axis range")
@@ -44,8 +44,8 @@ args = p.parse_args()
 
 file_name = args.csv_name
 change_ax_name = args.change
-print("The read file name: " + file_name)
-print("The name of axis to change: " + change_ax_name)
+print("Reading file name: " + file_name)
+print("Change the scale of the horizontal axis (X) in this graph: " + change_ax_name)
 
 # option: logarithmic scale
 log_axis = "Off"
@@ -59,10 +59,10 @@ def log_scale():
 option_range = "Off"
 def axis_range():
     option_range = "On"
-    x_min = input("Enter the X-axis minimun: ")
-    x_max = input("Enter the X-axis maximun: ")
-    y_min = input("Enter the Y-axis minimun: ")
-    y_max = input("Enter the Y-axis maximun: ")
+    x_min = input("Enter the MINIMUM for the horizontal axis(X): ")
+    x_max = input("Enter the MAXIMUM for the horizontal axis(X): ")
+    y_min = input("Enter the MINIMUM for the vertical axis(Y): ")
+    y_max = input("Enter the MAXIMUM for the vertical axis(Y): ")
     return option_range, x_min, x_max, y_min, y_max
 
 # option: transparency graph
@@ -102,10 +102,13 @@ for row in file_reader:
 
 
 # find the axis to change
+change_ax_num = None
 for i in list_num_ori:
     exec("if change_ax_name == data{}.name:\
         change_ax_num = i".format(i))
-    exec('raise Exception("ERROR: the change axis is not found.")')
+print(change_ax_num)
+if change_ax_num == None:
+   raise Exception("ERROR: the change axis is not found.")
 
 # print data name
 for i in list_num_ori:
@@ -134,6 +137,8 @@ plt.rcParams['xtick.major.width'] = 1.0
 plt.rcParams['ytick.major.width'] = 1.0
 plt.rcParams['font.size'] = 15 
 plt.rcParams['axes.linewidth'] = 1.0
+plt.rcParams["legend.framealpha"] = 1.0
+plt.rcParams["legend.fancybox"] = False
 colorlist = ["blue", "green", "red", "orange", "magenta", "black"]
 markerlist = ['o','^','v','<','>',',','*','d']
 stylelist = ['-', '--', '-.', ':']
