@@ -1,6 +1,6 @@
 """
 November 14th 2019
-            Authoer T.Mizumoto
+            Author T.Mizumoto
 """
 # python 3
 # ver.X5.04
