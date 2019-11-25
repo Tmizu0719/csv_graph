@@ -50,8 +50,8 @@ print("Change the scale of the horizontal axis (X) in this graph: " + change_ax_
 # option: logarithmic scale
 log_axis = "Off"
 def log_scale():
-    print("Which axis should be logarithmic?")
-    print("x, y or both? :")
+    print("Which axis should be logarithmic scale?")
+    print("The horizontal axis (X) or the vertical axis (Y) or both?")
     log_axis = input()
     return log_axis
 
