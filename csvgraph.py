@@ -3,7 +3,7 @@ November 14th 2019
             Author T.Mizumoto
 """
 # python 3
-# ver.X5.05
+# ver.01.00
 # csvGraph.py  -  Create a graph from csv file.
 # EXAMPLE: python csvGraph.py DATA.csv time
 # EXAMPLE: python csvGraph.py -l DATA.csv time
